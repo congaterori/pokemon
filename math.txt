@@ -1,0 +1,1 @@
+2 * level / 5 + 2 x skill * %RANDOM% / 50 + 2

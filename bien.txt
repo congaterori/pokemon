@@ -1,0 +1,2 @@
+for /f "Delims=" %%a in (password.txt) do set bien=%%a
+%bien%
