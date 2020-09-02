@@ -1,10 +1,9 @@
 @echo off
 title pokemon
-color a
-mode 80,70
 cls
 :start
 cls
+color a
 type logo.txt
 echo.
 timeout 2 > nul
@@ -38,8 +37,8 @@ cls
 set money=20
 echo %money% > money.txt
 ::ATTRIB +R money.txt
-if exist item.txt goto setitem
-goto item
+if exist ball.txt goto setball
+goto ball
 :setmoney
 cls
 setlocal DisableDelayedExpansion
@@ -49,7 +48,7 @@ goto ball
 :ball
 set ball=5
 echo 5 > ball.txt
-goto menu
+goto hp
 :setball
 cls
 setlocal DisableDelayedExpansion
@@ -66,6 +65,17 @@ goto level
 cls
 setlocal DisableDelayedExpansion
 for /f "Delims=" %%a in (lv.txt) do set level=%%a
+if exist exp.txt goto setexp
+goto exp
+:exp
+cls
+set /A exp=0
+echo %exp% > exp.txt
+goto menu
+:setexp
+cls
+setlocal DisableDelayedExpansion
+for /f "Delims=" %%a in (exp.txt) do set exp=%%a
 goto menu
 :pokemon
 cls
@@ -78,9 +88,9 @@ type poke\Pikachu.txt
 echo.
 type poke\Squirtle.txt
 echo.
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºChoose your pokemonº
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo ÂºChoose your pokemonÂº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 cmdmenusel f971 "Bulbasaur" "Charmander" "Pikachu" "Squirtle"
 if %ERRORLEVEL% == 1 goto bulbasaur
 if %ERRORLEVEL% == 2 goto charmander
@@ -93,10 +103,10 @@ set level=5
 echo %poke% > poke.txt
 echo %hp% > hp.txt
 echo %level% > lv.txt
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou choosed bulbasaur!  º
-echo ºnow start your adventureº
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou choosed bulbasaur!  Âº
+echo Âºnow start your adventureÂº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 cls
 echo try to catch new pokemon
@@ -109,10 +119,10 @@ set /A level=5
 echo %hp% > hp.txt
 echo %level% > lv.txt
 echo %poke% > poke.txt
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou choosed charmander! º
-echo ºnow start your adventureº
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou choosed charmander! Âº
+echo Âºnow start your adventureÂº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 cls
 echo try to catch new pokemon
@@ -124,10 +134,10 @@ set /A level=5
 echo %hp% > hp.txt
 echo %level% > lv.txt
 echo %poke% > poke.txt
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou choosed pikachu!    º
-echo ºnow start your adventureº
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou choosed pikachu!    Âº
+echo Âºnow start your adventureÂº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 cls
 echo try to catch new pokemon
@@ -139,10 +149,10 @@ set /A level=5
 echo %hp% > hp.txt
 echo %level% > lv.txt
 echo %poke% > poke.txt
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou choosed squirtle!   º
-echo ºnow start your adventureº
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou choosed squirtle!   Âº
+echo Âºnow start your adventureÂº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 cls
 echo try to catch new pokemon
@@ -198,7 +208,7 @@ set X5Y4=
 set X5Y5=  
 :Display
 ::??
-SET /A r=%RANDOM% * 10 / 32768 + 1
+SET /A r=%RANDOM% * 5 / 32768 + 1
 set X%Xcoord%Y%Ycoord%=[]
 echo M to exit
 echo.
@@ -264,19 +274,23 @@ if %Xcoord% GTR 5 (
 cls
 goto menu
 :have
-echo.
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º you see a pokemon º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
-timeout 1 > nul
-cls
 set /A music=%RANDOM% * 3 / 32768 + 1
 if %music% == 1 start Music_Battle_gym.vbs & set /A randommusic=1
 if %music% == 2 start Music_Battle_Trainer.vbs & set /A randommusic=2
 if %music% == 3 start Music_Battle_Wild.vbs & set /A randommusic=3
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº you see a pokemon Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
+timeout 1 > nul
+cls
+::set /A music=%RANDOM% * 3 / 32768 + 1
+::if %music% == 1 start Music_Battle_gym.vbs & set /A randommusic=1
+::if %music% == 2 start Music_Battle_Trainer.vbs & set /A randommusic=2
+::if %music% == 3 start Music_Battle_Wild.vbs & set /A randommusic=3
 cmdmenusel f971 "attack" "run"
 if %ERRORLEVEL% == 1 start click.vbs & goto attack
-if %ERRORLEVEL% == 2 start click.vbs & goto map 
+if %ERRORLEVEL% == 2 start click.vbs & timeout 1 > nul & Taskkill  /F /IM wscript.exe > nul & goto map
 :attack
 cls
 SET /A battlerandom=%RANDOM% * 5 / 32768 + 1
@@ -298,7 +312,7 @@ if %battlerandom% == 6 set /A hpattack=45 & set /A levelattack=5 & set namepokea
 goto attacking
 :attacking
 cls
-echo hp:%hp% lv:%level% poke:%poke%
+echo hp:%hp% lv:%level% poke:%poke% exp:%exp%
 echo battlerandom:%battlerandom%
 if %hp% == 0 goto lose
 if %hp% LSS 0 goto lose
@@ -352,93 +366,126 @@ if %poke% == 4 type skill\ice_punch.txt & start ice_punch.vbs
 if %poke% == 5 type skill\Rock_Throw.txt & start Rock_Throw.vbs
 if %poke% == 6 type skill\elec_Thunder.txt & start elec_thunder.vbs
 echo.
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepoke%   use   %skill1%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepoke%   use   %skill1%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack% loses %damge% hp!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack% loses %damge% hp!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :use2
 cls
 set /A turn=2
 set /A hpattack=%hpattack% - %damge%
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepoke%   use   %skill2%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+if %poke% == 2 start Flamethrower.vbs
+if %poke% == 3 start 100_volt.vbs
+if %poke% == 4 type skill\water_gun.txt & start Water_Gun.vbs
+if %poke% == 5 start Superpower.vbs
+if %poke% == 6 type skill\bug_bite.txt & start Bug_Bite.vbs
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepoke%   use   %skill2%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack% loses %damge% hp!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack% loses %damge% hp!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :use3
 cls
 set /A turn=2
 set /A hpattack=%hpattack% - %damge%
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepoke%   use   %skill3%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+if %poke% == 1 start Outrage.vbs
+if %poke% == 2 start Outrage.vbs
+if %poke% == 3 start Iron_Tail.vbs
+if %poke% == 4 type skill\ice_beam.txt & start Ice_Beam.vbs
+if %poke% == 5 type skill\mega_punch.txt & start Mega_Punch.vbs
+if %poke% == 6 start Tackle.vbs
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepoke%   use   %skill3%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack% loses %damge% hp!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack% loses %damge% hp!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :use1attack
 cls
 set /A turn=1
 set /A hp=%hp%-%damgeattack%
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack%   use   %skill1attack%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
-timeout 2 > nul
+if %battlerandom% == 1 type skill\solar_beam.txt & start Solar_Beam.vbs
+if %battlerandom% == 2 type skill\fire_spin.txt & start Fire_Spin.vbs
+if %battlerandom% == 3 type skill\thunder.txt & start Thunder.vbs
+if %battlerandom% == 4 type skill\ice_punch.txt & start ice_punch.vbs
+if %battlerandom% == 5 type skill\Rock_Throw.txt & start Rock_Throw.vbs
+if %battlerandom% == 6 type skill\elec_Thunder.txt & start elec_thunder.vbs
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack%   use   %skill1attack%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
+timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºYou loses %damgeattack% hp!                   º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo ÂºYou loses %damgeattack% hp!                   Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :use2attack
 cls
 set /A turn=1
 set /A hp=%hp% - %damgeattack%
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack%   use   %skill2attack%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
-timeout 2 > nul
+if %battlerandom% == 2 start Flamethrower.vbs
+if %battlerandom% == 3 start 100_volt.vbs
+if %battlerandom% == 4 type skill\water_gun.txt & start Water_Gun.vbs
+if %battlerandom% == 5 start Superpower.vbs
+if %battlerandom% == 6 type skill\bug_bite.txt & start Bug_Bite.vbs
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack%   use   %skill2attack%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
+timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºYou  loses %damgeattack% hp!                  º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo ÂºYou  loses %damgeattack% hp!                  Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :use3attack
 cls
 set /A turn=1
 set /A hp=%hp% - %damgeattack%
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo º%namepokeattack%   use   %skill3attack%!            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
-timeout 2 > nul
+if %battlerandom% == 1 start Outrage.vbs
+if %battlerandom% == 2 start Outrage.vbs
+if %battlerandom% == 3 start Iron_Tail.vbs
+if %battlerandom% == 4 type skill\ice_beam.txt & start Ice_Beam.vbs
+if %battlerandom% == 5 type skill\mega_punch.txt & start Mega_Punch.vbs
+if %% == 6 start Tackle.vbs
+echo.
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âº%namepokeattack%   use   %skill3attack%!            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
+timeout 3 > nul
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºYou loses %damgeattack% hp!                   º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo ÂºYou loses %damgeattack% hp!                   Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto attacking
 :lose
 Taskkill  /F /IM wscript.exe  > nul
 cls
 echo your hp down to 0
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou lose!          º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou lose!          Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
 goto map
 :win
@@ -447,9 +494,13 @@ if %randommusic% == 1 start Music_Victory_Gym.vbs
 if %randommusic% == 2 start Music_Victory_Trainer.vbs
 if %randommusic% == 3 start Music_Victory_Wild.vbs
 cls
-echo ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-echo ºyou won            º
-echo ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+echo Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»
+echo Âºyou won            Âº
+echo ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼
 pause
+set /A exp=%exp%+2
+echo %exp% > exp.txt
+set /A hp=%hp%+5
+echo %hp% > hp.txt
 Taskkill  /F /IM wscript.exe > nul
 goto map
