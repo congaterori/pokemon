@@ -362,7 +362,7 @@ set /A hpattack=%hpattack% - %damge%
 if %poke% == 1 type skill\solar_beam.txt & start Solar_Beam.vbs
 if %poke% == 2 type skill\fire_spin.txt & start Fire_Spin.vbs
 if %poke% == 3 type skill\thunder.txt & start Thunder.vbs
-if %poke% == 4 type skill\ice_punch.txt & start ice_punch.vbs
+if %poke% == 4 type skill\ice_punch.txt & start Ice_Punch.vbs
 if %poke% == 5 type skill\Rock_Throw.txt & start Rock_Throw.vbs
 if %poke% == 6 type skill\elec_Thunder.txt & start elec_thunder.vbs
 echo.
@@ -424,7 +424,7 @@ set /A hp=%hp%-%damgeattack%
 if %battlerandom% == 1 type skill\solar_beam.txt & start Solar_Beam.vbs
 if %battlerandom% == 2 type skill\fire_spin.txt & start Fire_Spin.vbs
 if %battlerandom% == 3 type skill\thunder.txt & start Thunder.vbs
-if %battlerandom% == 4 type skill\ice_punch.txt & start ice_punch.vbs
+if %battlerandom% == 4 type skill\ice_punch.txt & start Ice_Punch.vbs
 if %battlerandom% == 5 type skill\Rock_Throw.txt & start Rock_Throw.vbs
 if %battlerandom% == 6 type skill\elec_Thunder.txt & start elec_thunder.vbs
 echo.
