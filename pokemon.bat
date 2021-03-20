@@ -159,6 +159,7 @@ echo try to catch new pokemon
 goto menu
 :menu
 cls
+color a
 if %poke% == 1 set namepoke=Bulbasaur
 if %poke% == 2 set namepoke=Charmander
 if %poke% == 3 set namepoke=Pikachu
